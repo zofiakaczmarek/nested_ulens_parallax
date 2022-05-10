@@ -5,11 +5,11 @@ modelling simple and parallax microlensing event lightcurves with nested samplin
 
 ## Summary
 
-This code was used to conduct the modelling of microlensing events from the VISTA Variables in the Via Lactea (VVV) survey, described in Kaczmarek et al. (2022). It uses nested sampling to automatically characterise the degenerate, multimodal solutions in the parallax microlensing model.
+This code was used to conduct the modelling of microlensing events from the VISTA Variables in the Via Lactea (VVV) survey, described in Kaczmarek et al. (2022). It uses the nested sampling implementation from `dynesty` ([Speagle 2020](https://arxiv.org/abs/1904.02180)) to automatically characterise the degenerate, multimodal solutions in the parallax microlensing model.
 <!---
 add link to the paper, when available. Add license
 --->
-It is freely available for use. If you use this code, please cite Kaczmarek et al. (2022).
+It is freely available for use. If you use this code, please cite Kaczmarek et al. (2022) and [Speagle 2020](https://arxiv.org/abs/1904.02180).
 
 ## Data
 
