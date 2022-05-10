@@ -1,0 +1,54 @@
+paths:
+   output_directory : 'results/'
+
+priors:
+    tE:
+        distribution: 'uniform'
+        parameters:
+            loc: 0
+            scale: 1000
+    u0:
+        distribution: 'uniform'
+        parameters:
+            loc: -2
+            scale: 4
+
+    pi_EN:
+        distribution: 'uniform'
+        parameters:
+            loc: -1
+            scale: 2
+
+    pi_EE:
+        distribution: 'uniform'
+        parameters:
+            loc: -1
+            scale: 2
+
+    fbl:
+        distribution: 'uniform'
+        parameters:
+            loc: 0
+            scale: 1.1
+
+    muSN:
+        distribution: 'uniform'
+        parameters:
+            loc: -15
+            scale: 30
+
+    muSE:
+        distribution: 'uniform'
+        parameters:
+            loc: -15
+            scale: 30
+
+    thetaE:
+        distribution: 'uniform'
+        parameters:
+            loc: 0
+            scale: 10
+
+
+nested_sampling:
+    nlive: 1000

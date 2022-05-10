@@ -1,0 +1,34 @@
+paths:
+   lightcurve_path : '../data/lightcurve_data.csv'
+   param_path: '../data/pspl_event_parameters.csv'
+   output_directory : 'results/'
+
+priors:
+    tE:
+        distribution: 'uniform'
+        parameters:
+            loc: 0
+            scale: 1000
+    u0:
+        distribution: 'uniform'
+        parameters:
+            loc: -2
+            scale: 4
+    fbl:
+        distribution: 'uniform'
+        parameters:
+            loc: 0
+            scale: 1.1
+    pi_EE:
+        distribution: 'uniform'
+        parameters:
+            loc: -3
+            scale: 6
+    pi_EN:
+        distribution: 'uniform'
+        parameters:
+            loc: -3
+            scale: 6
+
+nested_sampling:
+    nlive: 1000
