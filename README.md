@@ -1,18 +1,15 @@
 
-<!---
-title: whatever the name will be :)
---->
+# nested_ulens_parallax
+
+modelling simple and parallax microlensing event lightcurves with nested sampling
 
 ## Summary
 
 This code was used to conduct the modelling of microlensing events from the VISTA Variables in the Via Lactea (VVV) survey, described in Kaczmarek et al. (2022). It uses nested sampling to automatically characterise the degenerate, multimodal solutions in the parallax microlensing model.
 <!---
-add link to the paper, when available
+add link to the paper, when available. Add license
 --->
-It is freely available for use.
-<!---
-describe license/availability
---->
+It is freely available for use. If you use this code, please cite Kaczmarek et al. (2022).
 
 ## Data
 
@@ -35,13 +32,9 @@ For each source ID and each model, the output will consist of a dynesty .pkl fil
 
 The astrometry/ folder contains the code used in Section 5 of the paper. It includes simultaneous modelling of photometric (`mags`) and 2D astrometric (`racs`, `decs`) data, and introduces additional astrometric parameters to fit for.
 
-<!---
-check if it still remains Section 5 in the end
---->
-
 This part is structured similarly to the previous two. The main difference is that coordinates, reference time and datafile path are fixed for the single mock event we have simulated, so there is no `source_id` argument. Instead, `n_cores` (number of cores to be used in parallel) is taken as an argument, and parallelisation is included in the body of the code.
 
-Contrary to the photometry part, where we introduced parallelisation by running the fit_parallax_model.py/fit_simple_model.py contents in separate processes for each event, here computational challenges make it necessary to use a number of cores for modelling a single event.
+Contrary to the photometry part, where we introduced parallelisation by running the `fit_parallax_model.py`/`fit_simple_model.py` contents in separate processes for each event, here computational challenges make it necessary to use a number of cores for modelling a single event.
 
 ## Dependencies
 
