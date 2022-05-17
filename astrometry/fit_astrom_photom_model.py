@@ -10,12 +10,12 @@ import argparse
 import pandas as pd
 
 parser = argparse.ArgumentParser()
-parser.add_argument('--ncores', type=int)
+parser.add_argument('--n_cores', type=int)
 args = parser.parse_args()
-num_cores = args.ncores
+num_cores = args.n_cores
 
 # load in config file
-with open("config_new_params.yaml", "r") as file:
+with open("config.yaml", "r") as file:
     config = yaml.load(file, Loader=yaml.SafeLoader)
 
 
