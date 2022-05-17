@@ -378,9 +378,8 @@ def plot_corner(samples=None, output_dir='', source_id=''):
 def plot_samples_over_data(posterior=None, obsdata=None, num_samples=100,
                            output_dir='',source_id='', ra=0, dec=0, t0par=0):
     """Plots samples of the model over the data"""
-    min_time, max_time = np.min(obsdata['mjdobs']), np.max(obsdata['mjdobs'])
+    min_time, max_time = np.min(obsdata['mjdobs'])-700, np.max(obsdata['mjdobs'])+700
     times_dense = np.linspace(min_time, max_time, num=1000)
-    times_dense = obsdata['mjdobs']
     delta_sun_dense = annual_parallax(ra, dec, t0par, times_dense)
     plt.clf()
     fig, axs = plt.subplots(2,2, figsize=(12,12))
@@ -394,18 +393,23 @@ def plot_samples_over_data(posterior=None, obsdata=None, num_samples=100,
         axs[1][0].plot(times_dense, decs_dense, color='fuchsia', linewidth=0.2, zorder=3, alpha=0.2)
         axs[1][1].plot(racs_dense, decs_dense, color='fuchsia', linewidth=0.2, zorder=3, alpha=0.2)
 
-    axs[0][0].errorbar(obsdata['mjdobs'], obsdata['mags'], yerr=obsdata['emags'], fmt='o', color='black', ms=3)
-    axs[0][1].errorbar(obsdata['mjdobs'], obsdata['racs'], yerr=obsdata['eracs'], fmt='o', color='black', ms=3)
-    axs[1][0].errorbar(obsdata['mjdobs'], obsdata['decs'], yerr=obsdata['edecs'], fmt='o', color='black', ms=3)
-    axs[1][1].errorbar(obsdata['racs'], obsdata['decs'], xerr=obsdata['eracs'], yerr=obsdata['edecs'], fmt='o', color='black', ms=3)
+    axs[0][0].errorbar(obsdata['mjdobs'], obsdata['mags'], yerr=obsdata['emags'], fmt='o', color='black', ms=3, alpha=0.05)
+    axs[0][1].errorbar(obsdata['mjdobs'], obsdata['racs'], yerr=obsdata['eracs'], fmt='o', color='black', ms=3, alpha=0.05)
+    axs[1][0].errorbar(obsdata['mjdobs'], obsdata['decs'], yerr=obsdata['edecs'], fmt='o', color='black', ms=3, alpha=0.05)
+    axs[1][1].errorbar(obsdata['racs'], obsdata['decs'], xerr=obsdata['eracs'], yerr=obsdata['edecs'], fmt='o', color='black', ms=3, alpha=0.05)
 
     axs[0][0].set_xlabel('Time [mjd]', fontsize=14)
     axs[0][0].set_ylabel('$K_{s}$-band [mag]', fontsize=14)
-    axs[0][0].set_ylim(np.min(obsdata['mags'])-1, np.max(obsdata['mags']))
-    axs[0][0].set_xlim(55500, 59000)
-    axs[0][1].set_xlim(55500, 59000)
-    axs[1][0].set_xlim(55500, 59000)
+    axs[0][0].set_ylim(np.min(obsdata['mags'])-1, np.max(obsdata['mags']+0.5))
+    axs[0][0].set_xlim(min_time, max_time)
+    axs[0][1].set_xlim(min_time, max_time)
+    axs[1][0].set_xlim(min_time, max_time)
     axs[0][0].invert_yaxis()
+
+    axs[0][0].grid()
+    axs[0][1].grid()
+    axs[1][0].grid()
+    axs[1][1].grid()
 
     axs[0][1].set_xlabel('Time [mjd]', fontsize=14)
     axs[0][1].set_ylabel(r'$\Delta\alpha*$ [mas]', fontsize=14)
