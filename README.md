@@ -9,11 +9,11 @@ This code was used to conduct the modelling of microlensing events from the VIST
 <!---
 add link to the paper, when available. Add license
 --->
-It is freely available for use. If you use this code, please cite Kaczmarek et al. (2022) and [Speagle 2020](https://arxiv.org/abs/1904.02180).
+It is freely available for use. If you use this code, please cite Kaczmarek et al. (2022) and [Speagle (2020)](https://arxiv.org/abs/1904.02180).
 
 ## Data
 
-The folder `data/` includes all data necessary for the modelling of the 21 best strong parallax signal candidates selected in Section 4 of the paper. It comprises of complete VVV photometry (`lightcurve_data.csv`) and coordinates and parameters of an initial simple lightcurve fit from [Husseiniova et al. 2021](https://arxiv.org/abs/2106.15617) (`pspl_event_parameters.csv`) for all of them, coded by source ID.
+The folder `data/` includes all data necessary for the modelling of the 21 best strong parallax signal candidates selected in Section 4 of the paper. It comprises of complete VVV photometry (`lightcurve_data.csv`) and coordinates and parameters of an initial simple lightcurve fit from [Husseiniova et al. (2021)](https://arxiv.org/abs/2106.15617) (`pspl_event_parameters.csv`) for all of them, coded by source ID.
 
 In addition to those files, we are including a mock datafile containing RST-like astrometry and photometry as `0324_mockdata_RST.csv`.
 

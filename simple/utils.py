@@ -8,10 +8,19 @@ from dynesty import utils as dyfunc
 import corner
 import matplotlib.pyplot as plt
 
+
+class Uniform:
+    def __init__(self, loc=0.0, scale=1.0):
+        self.loc = loc
+        self.scale = scale
+
+    def ppf(self, x):
+        return x * self.scale + self.loc
+
+
 def get_prior(param_dict):
     """Coverts prior config files to prior distributions"""
-    dist = getattr(stats, param_dict['distribution'])
-    return dist(**param_dict['parameters'])
+    return Uniform(**param_dict['parameters'])
 
 
 def get_all_priors(data=None, config=None):
@@ -24,13 +33,13 @@ def get_all_priors(data=None, config=None):
 def t0_prior(times):
     """Sets the prior on the closest approach time to be uniform between the
     min and max times in the light curve"""
-    return stats.uniform(loc=np.min(times), scale=np.max(times)-np.min(times))
+    return Uniform(loc=np.min(times), scale=np.max(times) - np.min(times))
 
 
 def m0_prior(mags):
     """Sets the prior on the baseline magnitude to be uniform within one
     magnitude of the median magnitude of the light curve"""
-    return stats.uniform(loc=np.median(mags)-0.5, scale=1.0)
+    return Uniform(loc=np.median(mags) - 0.5, scale=1.0)
 
 
 def prior_transform(params, priors):
