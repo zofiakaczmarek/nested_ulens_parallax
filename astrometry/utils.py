@@ -10,7 +10,10 @@ from astropy.coordinates import get_body_barycentric_posvel
 from astropy.time import Time
 from astropy import units as u
 import dynesty
+from dynesty import utils as dyfunc
 import pickle
+import corner
+import matplotlib.pyplot as plt
 import math
 from multiprocessing import Pool
 from numba import njit
@@ -382,10 +385,10 @@ def plot_samples_over_data(posterior=None, obsdata=None, num_samples=100,
     plt.clf()
     fig, axs = plt.subplots(2,2, figsize=(12,12))
 
+
     for sample in range(num_samples):
 
-        racs_dense, decs_dense, mags_dense = astrometry_sim_geo(posterior['u0'][sample], posterior['t0'][sample], posterior['tE'][sample], posterior['pi_EN'][sample], posterior['pi_EE'][sample], posterior['fbl'][sample], posterior['m0'][sample], times_dense, delta_sun_dense, posterior['muSN'][sample], posterior['muSE'][sample], posterior['thetaE'][sample], posterior['alpha0'][sample], posterior['delta0'][sample])
-
+        racs_dense, decs_dense, mags_dense = astrometry_sim_geo(times_dense, delta_sun_dense, posterior['tE'][sample], posterior['u0'][sample], posterior['pi_EN'][sample], posterior['pi_EE'][sample], posterior['fbl'][sample], posterior['muSN'][sample], posterior['muSE'][sample], posterior['thetaE'][sample], posterior['t0'][sample],  posterior['m0'][sample], posterior['alpha0'][sample], posterior['delta0'][sample])
         axs[0][0].plot(times_dense, mags_dense, color='fuchsia', linewidth=0.2, zorder=3, alpha=0.2)
         axs[0][1].plot(times_dense, racs_dense, color='fuchsia', linewidth=0.2, zorder=3, alpha=0.2)
         axs[1][0].plot(times_dense, decs_dense, color='fuchsia', linewidth=0.2, zorder=3, alpha=0.2)
